@@ -1,0 +1,14 @@
+.DS_Store
+
+*.class
+*.iml
+
+gradlew
+gradlew.bat
+
+.idea/
+.gradle/
+gradle
+classes
+build
+out

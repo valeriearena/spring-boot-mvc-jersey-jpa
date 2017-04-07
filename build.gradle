@@ -1,0 +1,70 @@
+//https://start.spring.io
+//Automatically generate projects by selecting from drop-downs and check boxes.
+//Select build tool (gradle vs maven), dependencies, artifact name, packaging, language (java vs. groovy)
+group 'jersey-spring-boot-jpa'
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath( 'io.spring.gradle:dependency-management-plugin:0.5.3.RELEASE')
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+
+/*
+Spring IO:
+Spring IO does not include any dependencies. It only helps to manage dependencies.
+Spring IO Platform is primarily intended to be used with a dependency management system.
+It manages projects in the Spring portfolio plus transitive dependencies
+that have been tested and are known to work together.
+
+http://docs.spring.io/platform/docs/1.0.0.RELEASE/reference/htmlsingle/#appendix-dependency-versions
+ */
+
+/*
+Spring Boot:
+* Easier dependency management
+* Auto configuration and sensible defaults based on dependencies in class path
+* Embedded Servlet Container support
+
+Spring starters are are dependency descriptors that list transitive dependencies with versions
+that are tested to work together to save you time from trying to put libraries together
+that take care of some facet of an application.
+
+http://docs.spring.io/spring-boot/docs/1.2.1.RELEASE/reference/htmlsingle/#using-boot-starter-poms
+*/
+
+/*
+Spring IO vs Spring Boot: Spring Boot is, by design, part of the Spring IO Platform.
+*/
+
+dependencies {
+
+    compile 'org.springframework.boot:spring-boot-starter'
+
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+
+//    compile 'org.springframework.boot:spring-boot-starter-jersey'
+//    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
