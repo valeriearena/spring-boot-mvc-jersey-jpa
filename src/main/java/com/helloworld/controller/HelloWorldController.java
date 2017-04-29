@@ -1,11 +1,12 @@
 package com.helloworld.controller;
 
-import com.helloworld.representation.HelloWorldGreetingJaxb;
 import com.helloworld.properties.HelloWorldProperties;
+import com.helloworld.representation.HelloWorldGreetingJaxb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,9 @@ public class HelloWorldController {
 	@Autowired
 	private HelloWorldProperties helloWorldProperties;
 
+	@Autowired
+	private CounterService counter;
+
 	private static List<HelloWorldGreetingJaxb> greetings = new ArrayList<HelloWorldGreetingJaxb>();
 
 	static  {
@@ -48,9 +52,10 @@ public class HelloWorldController {
 	@RequestMapping("/helloworld")
 	public String rest(){
 
+		counter.increment("counter.index.invoked");
+
 		LOGGER.info("************** loggingLevelWeb={}",loggingLevelWeb);
 		LOGGER.info("************** loggingLevelBoot={}",loggingLevelBoot);
-
 
 		LOGGER.info("************** helloWorldName={}",helloWorldProperties.getName());
 		LOGGER.info("************** helloWorldDescription={}",helloWorldProperties.getDescription());
