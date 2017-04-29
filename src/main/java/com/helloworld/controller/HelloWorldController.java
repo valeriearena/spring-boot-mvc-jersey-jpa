@@ -1,5 +1,7 @@
-package com.helloworld;
+package com.helloworld.controller;
 
+import com.helloworld.representation.HelloWorldGreetingJaxb;
+import com.helloworld.properties.HelloWorldProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +34,13 @@ public class HelloWorldController {
 	@Autowired
 	private HelloWorldProperties helloWorldProperties;
 
-	private static List<HelloWorldGreeting> greetings = new ArrayList<HelloWorldGreeting>();
+	private static List<HelloWorldGreetingJaxb> greetings = new ArrayList<HelloWorldGreetingJaxb>();
 
 	static  {
-		greetings.add(new HelloWorldGreeting("Hello to Spring Boot","Spring Boot", "Val"));
-		greetings.add(new HelloWorldGreeting("Hello to Spring 4","Spring 4", "Val"));
-		greetings.add(new HelloWorldGreeting("Hello to Everyone","Everyone", "Val"));
-		greetings.add(new HelloWorldGreeting("Hello World","World", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring Boot","Spring Boot", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring 4","Spring 4", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Everyone","Everyone", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello World","World", "Val"));
 	}
 
 
@@ -57,13 +59,13 @@ public class HelloWorldController {
 	}
 
 	@RequestMapping("/helloworld/all")
-	public List<HelloWorldGreeting> getAll(){
+	public List<HelloWorldGreetingJaxb> getAll(){
 		return greetings;
 	}
 
 
 	@RequestMapping("/helloworld/findBy/from/{from}")
-	public List<HelloWorldGreeting> findByFrom(@PathVariable String from){
+	public List<HelloWorldGreetingJaxb> findByFrom(@PathVariable String from){
 		return greetings
 				.stream()
 				.filter(greeting -> greeting.getFrom().equalsIgnoreCase(from))
@@ -71,14 +73,14 @@ public class HelloWorldController {
 	}
 
 	@RequestMapping("/helloworld/findBy/to/{to}")
-	public List<HelloWorldGreeting> findByTo(@PathVariable String to){
+	public List<HelloWorldGreetingJaxb> findByTo(@PathVariable String to){
 		return greetings
 				.stream()
 				.filter(greeting -> greeting.getTo().equalsIgnoreCase(to))
 				.collect(Collectors.toList());
 	}
 
-	public static List<HelloWorldGreeting> getGreetings() {
+	public static List<HelloWorldGreetingJaxb> getGreetings() {
 		return greetings;
 	}
 }

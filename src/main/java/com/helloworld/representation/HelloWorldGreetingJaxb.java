@@ -1,15 +1,15 @@
-package com.helloworld;
+package com.helloworld.representation;
 
 /**
  * Created by valerie on 4/28/17.
  */
-public class HelloWorldGreeting {
+public class HelloWorldGreetingJaxb {
 
     private String greeting;
     private String to;
     private String from;
 
-    public HelloWorldGreeting(String greeting, String to, String from) {
+    public HelloWorldGreetingJaxb(String greeting, String to, String from) {
         this.greeting = greeting;
         this.to = to;
         this.from = from;
@@ -41,7 +41,7 @@ public class HelloWorldGreeting {
 
     @Override
     public String toString() {
-        return "HelloWorldGreeting{" +
+        return "HelloWorldGreetingJaxb{" +
                 "greeting='" + greeting + '\'' +
                 ", to='" + to + '\'' +
                 ", from='" + from + '\'' +

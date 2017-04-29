@@ -1,5 +1,6 @@
 package com.helloworld;
 
+import com.helloworld.representation.HelloWorldGreetingJaxb;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -75,11 +76,11 @@ public class HelloworldApplicationTests {
 	@Test
 	public void test2() throws Exception {
 
-		List<HelloWorldGreeting> greetings = new ArrayList<HelloWorldGreeting>();
-		greetings.add(new HelloWorldGreeting("Hello to Spring Boot","Spring Boot", "Val"));
-		greetings.add(new HelloWorldGreeting("Hello to Spring 4","Spring 4", "Val"));
-		greetings.add(new HelloWorldGreeting("Hello to Everyone","Everyone", "Val"));
-		greetings.add(new HelloWorldGreeting("Hello World","World", "Val"));
+		List<HelloWorldGreetingJaxb> greetings = new ArrayList<HelloWorldGreetingJaxb>();
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring Boot","Spring Boot", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring 4","Spring 4", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Everyone","Everyone", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello World","World", "Val"));
 
 		String json = toJsonString(greetings);
 		LOGGER.info("TESTING toJsonString: {}",json);
