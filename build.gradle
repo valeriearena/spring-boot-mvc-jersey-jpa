@@ -1,8 +1,11 @@
 //https://start.spring.io
+//Reference architecture tool/service called Spring Initializr
 //Automatically generate projects by selecting from drop-downs and check boxes.
+//Intellij supports Spring Initializr. Create New Project | Spring Initializr wizard
 group 'jersey-spring-boot-jpa'
 
 
+//Plugins with parent poms.
 buildscript {
     repositories {
         mavenCentral()
@@ -36,7 +39,8 @@ dependencyManagement {
 
 /*
 Spring IO:
-Spring IO does not include any dependencies. It only helps to manage dependencies.
+Spring IO is a new feature in Spring that only helps to manage dependencies.
+It does not include any dependencies.
 Spring IO Platform is primarily intended to be used with a dependency management system.
 It manages projects in the Spring portfolio plus transitive dependencies
 that have been tested and are known to work together.
@@ -46,13 +50,23 @@ http://docs.spring.io/platform/docs/1.0.0.RELEASE/reference/htmlsingle/#appendix
 
 /*
 Spring Boot:
+Spring Boot is a new feature in Spring that helps with managing dependencies, configuration, and deployment.
+Spring Boot does include dependencies called Spring starters (starter poms).
+
 * Easier dependency management
 * Auto configuration and sensible defaults based on dependencies in class path
-* Embedded Servlet Container support
+* Is "Production Ready" OTB and includes comes with Embedded Servlet Container support
 
 Spring starters are dependency descriptors that list transitive dependencies with versions
 that are tested to work together to save you time from trying to put libraries together
 that take care of some facet of an application.
+
+The starters apply autoconfiguration and the correct components with sensible defaults
+based on dependencies in the classpath, annotations, and configuration in property file.
+
+spring-boot-starter-tomcat comes with an embedded servlet container
+that enable an embedded Apache Tomcat 7 instance, by default.
+NOTE: The embedded container is not used here because we are building a WAR file.
 
 http://docs.spring.io/spring-boot/docs/1.2.1.RELEASE/reference/htmlsingle/#using-boot-starter-poms
 */
@@ -62,19 +76,22 @@ Spring IO vs Spring Boot:
 
 Spring IO Platforms allows you to manage dependencies without worrying about the versions and compatibility between them.
 Spring Boot makes the Spring application configuration easy using predefined properties, annotations and starters as dependencies.
-Spring IO Platform includes Spring Boot as a parent. That’s the reason because Spring IO Platform includes all Spring Boot dependencies and starters.
+Spring IO Platform includes Spring Boot as a parent and includes all Spring Boot dependencies and starters.
 Use Spring IO Platform as a parent if you want to use Spring IO Platform and Spring Boot together.
 
 https://dzone.com/articles/how-to-use-spring-io-platform-and-spring-boot-toge
 */
 
+//Starter poms and other dependencies.
 dependencies {
 
-    compile('org.springframework.boot:spring-boot-configuration-processor')
+
+    compile('org.springframework.boot:spring-boot-configuration-processor') //create your own custom properties with @ConfigurationProperties
 
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-actuator-docs')
-    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-hateoas') //generate links to actuator
+
     compile('org.springframework.boot:spring-boot-starter-jersey')
     compile('org.springframework.boot:spring-boot-starter-web')
 
@@ -82,10 +99,9 @@ dependencies {
     compile('org.flywaydb:flyway-core')
     compile('com.h2database:h2')
 
-    compile('com.jayway.jsonpath:json-path')
-
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 
+    testCompile('com.jayway.jsonpath:json-path')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }
