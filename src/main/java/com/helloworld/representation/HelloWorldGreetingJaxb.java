@@ -9,6 +9,8 @@ public class HelloWorldGreetingJaxb {
     private String to;
     private String from;
 
+    public HelloWorldGreetingJaxb(){}
+
     public HelloWorldGreetingJaxb(String greeting, String to, String from) {
         this.greeting = greeting;
         this.to = to;

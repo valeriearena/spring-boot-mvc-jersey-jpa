@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/controller/helloworld")
 public class HelloWorldController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
@@ -41,15 +43,13 @@ public class HelloWorldController {
 	private static List<HelloWorldGreetingJaxb> greetings = new ArrayList<HelloWorldGreetingJaxb>();
 
 	static  {
-		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring Boot","Spring Boot", "Val"));
-		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring 4","Spring 4", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring Boot","SpringBoot", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring 4","Spring4", "Val"));
 		greetings.add(new HelloWorldGreetingJaxb("Hello to Everyone","Everyone", "Val"));
 		greetings.add(new HelloWorldGreetingJaxb("Hello World","World", "Val"));
 	}
 
-
-
-	@RequestMapping("/helloworld")
+	@RequestMapping(method = RequestMethod.GET)
 	public String rest(){
 
 		counter.increment("counter.index.invoked");
@@ -63,13 +63,13 @@ public class HelloWorldController {
 		return "Hello World!!!";
 	}
 
-	@RequestMapping("/helloworld/all")
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<HelloWorldGreetingJaxb> getAll(){
 		return greetings;
 	}
 
 
-	@RequestMapping("/helloworld/findBy/from/{from}")
+	@RequestMapping(value = "findBy/from/{from}", method = RequestMethod.GET)
 	public List<HelloWorldGreetingJaxb> findByFrom(@PathVariable String from){
 		return greetings
 				.stream()
@@ -77,7 +77,7 @@ public class HelloWorldController {
 				.collect(Collectors.toList());
 	}
 
-	@RequestMapping("/helloworld/findBy/to/{to}")
+	@RequestMapping(value = "/findBy/to/{to}", method = RequestMethod.GET)
 	public List<HelloWorldGreetingJaxb> findByTo(@PathVariable String to){
 		return greetings
 				.stream()

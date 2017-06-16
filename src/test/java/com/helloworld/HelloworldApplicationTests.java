@@ -67,7 +67,7 @@ public class HelloworldApplicationTests {
 	@Test
 	public void test1() throws Exception {
 
-		ResultActions result = this.mockMvc.perform(get("/helloworld/all")).andExpect(status().isOk());
+		ResultActions result = this.mockMvc.perform(get("/controller/helloworld/all")).andExpect(status().isOk());
 
 		String json = result.andReturn().getResponse().getContentAsString();
 		LOGGER.info("TESTING /helloworld/all: {}",json);
@@ -77,8 +77,8 @@ public class HelloworldApplicationTests {
 	public void test2() throws Exception {
 
 		List<HelloWorldGreetingJaxb> greetings = new ArrayList<HelloWorldGreetingJaxb>();
-		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring Boot","Spring Boot", "Val"));
-		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring 4","Spring 4", "Val"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring Boot","SpringBoot", "Valerie"));
+		greetings.add(new HelloWorldGreetingJaxb("Hello to Spring 4","Spring4", "Val"));
 		greetings.add(new HelloWorldGreetingJaxb("Hello to Everyone","Everyone", "Val"));
 		greetings.add(new HelloWorldGreetingJaxb("Hello World","World", "Val"));
 
@@ -88,7 +88,7 @@ public class HelloworldApplicationTests {
 
 	@Test
 	public void getAll() throws Exception {
-		mockMvc.perform(get("/helloworld/all"))
+		mockMvc.perform(get("/controller/helloworld/all"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
 				.andExpect(jsonPath("$",iterableWithSize(4)))
@@ -97,7 +97,7 @@ public class HelloworldApplicationTests {
 
 	@Test
 	public void findByFrom() throws Exception {
-		mockMvc.perform(get("/helloworld/findBy/from/" + FROM))
+		mockMvc.perform(get("/controller/helloworld/findBy/from/" + FROM))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
 				.andExpect(jsonPath("$",iterableWithSize(4)))
