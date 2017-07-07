@@ -2,6 +2,7 @@
 
 *.class
 *.iml
+*.log
 
 gradlew
 gradlew.bat
