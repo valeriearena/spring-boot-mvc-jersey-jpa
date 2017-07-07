@@ -107,5 +107,5 @@ dependencies {
 }
 
 war {
-    archiveName = 'jersey-spring-boot.war'
+    archiveName = 'jersey-spring-boot-jpa.war'
 }
