@@ -1,13 +1,22 @@
 package com.helloworld;
 
+import com.helloworld.persistence.repository.HelloWorldGreetingRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 
 /**
- * ServletInitializer extends SpringBootServletInitializer
+ * SpringInitializer extends SpringBootServletInitializer
  * SpringBootServletInitializer implements WebApplicationInitializer
  *
- * How does Spring integrate with Servlet 3.x?
+ * NOTE: WebApplicationInitializer & ResourceConfig are both automatically detected
+ * 		and are the key to how Servlet 3.x containers automcatically register services.
+ *
+ * How does Spring integrate with Servlet 3.x (Tomcat 7 & 8)?
  * Implementations of WebApplicationInitializer will be detected automatically
  * by SpringServletContainerInitializer, which itself is bootstrapped automatically
  * by any Servlet 3.0 container because
@@ -27,14 +36,34 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
  *
  *
  * See its SpringServletContainerInitializer Javadoc for details on this bootstrapping mechanism.
- *
- *
  */
-public class ServletInitializer extends SpringBootServletInitializer {
+@SpringBootApplication
+public class SpringInitializer extends SpringBootServletInitializer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SpringInitializer.class);
+
+	@Bean
+	CommandLineRunner findAll(HelloWorldGreetingRepository repo){
+		return args ->{
+			LOGGER.info("> Greetings in Database: ");
+			repo.findAll().forEach(helloWorldGreetingEntity -> LOGGER.info(helloWorldGreetingEntity.toString()));
+		};
+	}
+
+	//The configure method inherited from SpringBootServletInitializer initializes an application context but only when deployed as a war file.
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(HelloWorldApplication.class);
+		return application.sources(SpringInitializer.class);
 	}
+
+	/*
+	The main method initializes an application context via a factory method inside SpringApplication when run with embedded container.
+	public static void main(String[] args) {
+		SpringApplication.run(SpringInitializer.class, args);
+	}
+	*/
+
+
+
 
 }

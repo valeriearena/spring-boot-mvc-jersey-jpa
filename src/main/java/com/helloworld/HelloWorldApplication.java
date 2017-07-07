@@ -5,10 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
+@Deprecated
+//@SpringBootApplication
 public class HelloWorldApplication{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldApplication.class);
@@ -17,7 +16,7 @@ public class HelloWorldApplication{
 		SpringApplication.run(HelloWorldApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	CommandLineRunner findAll(HelloWorldGreetingRepository repo){
 		return args ->{
 			LOGGER.info("> Greetings in Database: ");

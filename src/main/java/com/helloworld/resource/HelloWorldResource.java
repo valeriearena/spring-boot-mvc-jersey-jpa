@@ -66,7 +66,7 @@ public class HelloWorldResource {
         LOGGER.info("************** helloWorldName={}",helloWorldProperties.getName());
         LOGGER.info("************** helloWorldDescription={}",helloWorldProperties.getDescription());
 
-        return "pong " + name;
+        return "Hello " + name + "!!!";
     }
 
     @GET
