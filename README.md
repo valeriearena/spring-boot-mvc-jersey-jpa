@@ -9,7 +9,7 @@ LOG: http://localhost:8080/jersey-spring-boot-jpa/actuator/logfile <br/>
 
 HelloWorld Controller: http://localhost:8080/jersey-spring-boot-jpa/controller/helloworld <br/>
 
-HelloWorld Jersey Resource: http://localhost:8080/jersey-spring-boot-jpa/jersey/resource/helloworld/ping/val <br/>
+HelloWorld Jersey Resource: http://localhost:8080/jersey-spring-boot-jpa/jersey/resource/helloworld/ping/World <br/>
 
 Two JavaConfigs: SpringInitializer and JerseyConfig
 
