@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 /**
  * SpringInitializer extends SpringBootServletInitializer
@@ -42,6 +43,7 @@ public class SpringInitializer extends SpringBootServletInitializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpringInitializer.class);
 
+	@Profile("dev")
 	@Bean
 	CommandLineRunner findAll(HelloWorldGreetingRepository repo){
 		return args ->{
