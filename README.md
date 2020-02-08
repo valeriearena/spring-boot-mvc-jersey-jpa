@@ -1,4 +1,4 @@
-Hello World with Jersey, Spring, and JPA. <br/>
+# Spring Boot app with Jersey resources and JPA repositories. 
 
 List of Actuator Endpoints: http://localhost:8080/jersey-spring-boot-jpa/actuator <br/>
 
