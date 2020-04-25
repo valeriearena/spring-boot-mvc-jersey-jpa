@@ -1,4 +1,5 @@
-# Spring Boot app with Spring MVC, Jersey, and JPA. 
+# spring-boot-mvc-jersey-jpa
+Spring Boot app with Spring MVC, Jersey, and JPA. 
 
 List of Actuator Endpoints: http://localhost:8080/jersey-spring-boot-jpa/actuator <br/>
 
